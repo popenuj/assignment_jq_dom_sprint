@@ -1,5 +1,5 @@
 
-$(document).ready(function(){
+document.addEventListener("DOMContentLoaded", function(event) {
 
   $('h1').html('something cheeky');
 
