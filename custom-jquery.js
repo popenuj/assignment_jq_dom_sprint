@@ -150,6 +150,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
     return this.selection;
   };
 
+  jQueryObject.prototype.append = function(tag) {
+    this.each(function(element){
+      if (typeof tag === "string") {
+        tag =
+      }
+      element.appendChild(tag);
+    });
+    return this.selection;
+  };
+
   jQueryObject.prototype.val = function(value) {
     if (value) {
       this.each(function(element){
