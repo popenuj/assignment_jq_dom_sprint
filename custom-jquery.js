@@ -10,9 +10,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       if (/^</.test(input)) {
 
-        var tagName = input.replace(/[<>]/g, "");
-
-        return dom.createElement(tagName);
+        return $.createTag(input);
 
       } else {
 
@@ -55,6 +53,30 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   };
 
+  $.createTag = function(input) {
+
+    // input.replace(/[<>]/g, "")
+    var tagName = /<(\w*)>/.exec(input)[1];
+    var tagHTML = /<\w*>(.*)<\/\w*>/.exec(input)[1];
+
+    if (/<\w*>+\w+/.test(input)) {
+
+      // create tag
+      // insert html into tag
+
+    } else {
+
+      tag = document.createElement(tagName)
+
+    }
+
+    return tag;
+
+  };
+
+  /*
+   * jQueryObject
+  */
   function jQueryObject(selection) {
     if (!(this instanceof jQueryObject)) return new jQueryObject(selection);
     this.selection = selection;
@@ -64,7 +86,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   jQueryObject.prototype.idx = function(index) {
     return this.selection[index];
   };
-
 
   jQueryObject.prototype.css = function(propertyName, value) {
     if (value) {
@@ -153,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   jQueryObject.prototype.append = function(tag) {
     this.each(function(element){
       if (typeof tag === "string") {
-        tag =
+        tag = $(tag);
       }
       element.appendChild(tag);
     });
