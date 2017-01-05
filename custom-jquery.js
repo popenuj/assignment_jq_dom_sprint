@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if (typeof input === "string") {
 
       if (/^</.test(input)) {
-
+        console.log(input);
         return $.createTag(input);
 
       } else {
@@ -55,18 +55,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   $.createTag = function(input) {
 
-    // input.replace(/[<>]/g, "")
     var tagName = /<(\w*)>/.exec(input)[1];
-    var tagHTML = /<\w*>(.*)<\/\w*>/.exec(input)[1];
+    var tag = document.createElement(tagName);
+    var tagHTML;
 
-    if (/<\w*>+\w+/.test(input)) {
-
-      // create tag
-      // insert html into tag
-
-    } else {
-
-      tag = document.createElement(tagName)
+    if (/<\w*>(.*)<\/\w*>/.test(input)) {
+      tagHTML = /<\w*>(.*)<\/\w*>/.exec(input)[1];
+      tag.innerHTML = tagHTML;
 
     }
 
